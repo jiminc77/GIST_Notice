@@ -50,7 +50,7 @@ beautifulsoup4
 ```
 
 ### `.github/workflows/main.yml`
-- Specifies the cron schedule (e.g., daily at 03:00 UTC).
+- Specifies the cron schedule (e.g., daily from 00:00 to 12:00 UTC, every hour).
 - Installs dependencies and runs the Python script.
 - Passes environment variables (secrets) needed for Gist ID, SMTP configuration, etc.
 
