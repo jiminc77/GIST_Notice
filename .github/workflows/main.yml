@@ -32,4 +32,5 @@ jobs:
           SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           MAIL_SENDER: ${{ secrets.MAIL_SENDER }}
+          MAIL_SENDER_NAME: ${{ secrets.MAIL_SENDER_NAME }}
           MAIL_RECEIVER: ${{ secrets.MAIL_RECEIVER }}
