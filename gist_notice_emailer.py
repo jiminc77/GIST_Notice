@@ -20,6 +20,7 @@ from email.mime.text import MIMEText
 # SMTP_PASSWORD      : SMTP 비밀번호 (앱 비밀번호)
 # MAIL_SENDER        : 발신 메일 주소
 # MAIL_RECEIVER      : 수신 메일 주소
+# MAIL_SENDER_NAME   : 송신자 표시 이름
 
 # --------------------------------------------------------
 # 1. GIST 학사공지 페이지
@@ -127,18 +128,23 @@ def send_email(subject, body, smtp_info):
       "user": ...,
       "password": ...,
       "sender": ...,
+      "sender_name": ...,
       "receiver": ...
     }
     """
+    receiver_list = [r.strip() for r in smtp_info["receiver"].split(",") if r.strip()]
+    sender_name = smtp_info.get("sender_name", "")  # 없으면 빈 문자열
+    from_address = formataddr((sender_name, smtp_info["sender"]))
+    
     msg = MIMEText(body, _charset="utf-8")
     msg['Subject'] = subject
-    msg['From'] = smtp_info["sender"]
-    msg['To'] = smtp_info["receiver"]
+    msg['From'] = form_address
+    msg['To'] = ", ".join(receiver_list)
     
     with smtplib.SMTP(smtp_info["server"], smtp_info["port"]) as server:
         server.starttls()
         server.login(smtp_info["user"], smtp_info["password"])
-        server.sendmail(smtp_info["sender"], [smtp_info["receiver"]], msg.as_string())
+        server.sendmail(smtp_info["sender"], receiver_list, msg.as_string())
 
 
 # --------------------------------------------------------
@@ -157,6 +163,7 @@ def main():
         "password": os.environ["SMTP_PASSWORD"],
         "sender": os.environ["MAIL_SENDER"],
         "receiver": os.environ["MAIL_RECEIVER"],
+        "sender_name": os.environ.get("MAIL_SENDER_NAME", "")
     }
     
     # (2) 현재 Gist에 저장된 last_id 불러오기
