@@ -139,7 +139,7 @@ def send_email(subject, body, smtp_info):
     
     msg = MIMEText(body, _charset="utf-8")
     msg['Subject'] = subject
-    msg['From'] = form_address
+    msg['From'] = from_address
     msg['To'] = ", ".join(receiver_list)
     
     with smtplib.SMTP(smtp_info["server"], smtp_info["port"]) as server:
