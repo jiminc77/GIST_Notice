@@ -6,7 +6,6 @@ on:
   # 아래 이벤트는 테스트용 (push할 때마다 실행)
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   check-notice:
