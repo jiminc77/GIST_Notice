@@ -7,6 +7,7 @@ import re
 from bs4 import BeautifulSoup
 import smtplib
 from email.mime.text import MIMEText
+from email.utils import formataddr
 
 # --------------------------------------------------------
 # 환경 변수 (GitHub Actions → Secrets)로 받는 값들
