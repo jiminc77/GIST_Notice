@@ -1,0 +1,35 @@
+name: GIST Notice Checker
+
+on:
+  schedule:
+    - cron: "0 3 * * *"    # 매일 03:00 UTC (한국 시간 12:00)
+  # 아래 이벤트는 테스트용 (push할 때마다 실행)
+  push:
+    branches: [ main ]
+
+jobs:
+  check-notice:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        run: python gist_notice_emailer.py
+        env:
+          GIST_ID: ${{ secrets.GIST_ID }}
+          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+          SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_SENDER: ${{ secrets.MAIL_SENDER }}
+          MAIL_RECEIVER: ${{ secrets.MAIL_RECEIVER }}
