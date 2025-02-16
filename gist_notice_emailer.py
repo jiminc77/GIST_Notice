@@ -194,10 +194,10 @@ def main():
     for post in new_posts:
         full_link = f"https://www.gist.ac.kr/kr/html/sub05/050209.html{post['link']}"
         lines.append(
-            f"- ID: {post['post_id']}\n"
-            f"  제목: {post['title']}\n"
+            f"  [ {post['title']} ]\n\n"
             f"  작성일: {post['date']}\n"
-            f"  링크: {full_link}\n"
+            f"  링크: {full_link}\n\n"
+            f"  <ID: {post['post_id']}>\n"
         )
     
     body = "새로운 학사공지 게시글이 등록되었습니다.\n\n" + "\n".join(lines)
