@@ -12,7 +12,7 @@ This project automatically checks for new notices on the GIST(Gwangju Institute 
 ## How It Works
 
 1. **GitHub Actions triggers**  
-   - The Actions workflow is triggered daily by a schedule (or manually via push or a workflow dispatch).
+   - The Actions workflow is triggered daily by a schedule (or manually via push or a workflow dispatch). 
 2. **Retrieve last seen post ID**  
    - The script reads the `last_id.txt` content from a Gist via the GitHub API.  
    - If the file doesn’t exist or is `-1`, it treats the state as “no posts seen yet.”
