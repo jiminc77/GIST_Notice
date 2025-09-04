@@ -8,7 +8,7 @@ This project automatically checks for new notices on the GIST(Gwangju Institute 
 - **State management**: Stores the last seen post ID in a GitHub Gist so the project can keep track of which posts have already been processed, even when running on ephemeral CI environments.
 - **Email notifications**: Sends an email to a specified list of recipients if there are new notices since the last check.  
 - **Schedule**: Configured via a cron schedule in GitHub Actions (`.github/workflows/main.yml`).
-  
+   
 ## How It Works
 
 1. **GitHub Actions triggers**  
