@@ -1,4 +1,4 @@
-# GIST_Notice
+# GIST Notice
 
 This project automatically checks for new notices on the GIST(Gwangju Institute of Science and Technology) academic bulletin board ([GIST Academic Notice Board](https://www.gist.ac.kr/kr/html/sub05/050209.html?mode=L)) and sends email alerts when new posts are discovered.
 
